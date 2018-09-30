@@ -12,7 +12,7 @@
   "resources": [
     {
       "apiVersion": "2018-07-01-preview",
-      "name": "helloWorldNetwork",
+      "name": "MarsGalaxyNetwork",
       "type": "Microsoft.ServiceFabricMesh/networks",
       "location": "[parameters('location')]",
       "dependsOn": [],
@@ -21,11 +21,11 @@
         "ingressConfig": {
           "layer4": [
             {
-              "name": "helloWorldIngress",
+              "name": "MarsGalaxyIngress",
               "publicPort": "80",
-              "applicationName": "helloWorldApp",
-              "serviceName": "helloWorldService",
-              "endpointName": "helloWorldListener"
+              "applicationName": "MarsGalaxyApp",
+              "serviceName": "MarsGalaxyService",
+              "endpointName": "MarsGalaxyListener"
             }
           ]
         }
@@ -33,29 +33,29 @@
     },
     {
       "apiVersion": "2018-07-01-preview",
-      "name": "helloWorldApp",
+      "name": "MarsGalaxyApp",
       "type": "Microsoft.ServiceFabricMesh/applications",
       "location": "[parameters('location')]",
       "dependsOn": [
-        "Microsoft.ServiceFabricMesh/networks/helloWorldNetwork"
+        "Microsoft.ServiceFabricMesh/networks/MarsGalaxyNetwork"
       ],
       "properties": {
-        "description": "Service Fabric Mesh HelloWorld Application!",
+        "description": "Service Fabric Mesh MarsGalaxy Application!",
         "services": [
           {
             "type": "Microsoft.ServiceFabricMesh/services",
             "location": "[parameters('location')]",
-            "name": "helloWorldService",
+            "name": "MarsGalaxyService",
             "properties": {
-              "description": "Service Fabric Mesh Hello World Service.",
+              "description": "Service Fabric Mesh Mars Galaxy Service.",
               "osType": "linux",
               "codePackages": [
                 {
-                  "name": "helloWorldCode",
-                  "image": "seabreeze/azure-mesh-helloworld:1.1-alpine",
+                  "name": "MarsGalaxyCode",
+                  "image": "seabreeze/azure-mesh-MarsGalaxy:1.1-alpine",
                   "endpoints": [
                     {
-                      "name": "helloWorldListener",
+                      "name": "MarsGalaxyListener",
                       "port": "80"
                     }
                   ],
@@ -67,8 +67,8 @@
                   }
                 },
                 {
-                  "name": "helloWorldSideCar",
-                  "image": "seabreeze/azure-mesh-helloworld-sidecar:1.0-alpine",
+                  "name": "MarsGalaxySideCar",
+                  "image": "seabreeze/azure-mesh-MarsGalaxy-sidecar:1.0-alpine",
                   "resources": {
                     "requests": {
                       "cpu": "1",
@@ -80,7 +80,7 @@
               "replicaCount": "1",
               "networkRefs": [
                 {
-                  "name": "[resourceId('Microsoft.ServiceFabricMesh/networks', 'helloWorldNetwork')]"
+                  "name": "[resourceId('Microsoft.ServiceFabricMesh/networks', 'MarsGalaxyNetwork')]"
                 }
               ]
             }
