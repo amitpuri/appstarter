@@ -52,7 +52,7 @@
               "codePackages": [
                 {
                   "name": "MarsGalaxyCode",
-                  "image": "seabreeze/azure-mesh-MarsGalaxy:1.1-alpine",
+                  "image": "seabreeze/azure-mesh-helloworld:1.1-alpine",
                   "endpoints": [
                     {
                       "name": "MarsGalaxyListener",
